@@ -1,6 +1,6 @@
 import Pawn from './../models/pawndetails'
 
-class PawnService {
+ export default class PawnService {
   addPawn(req, res, next){
     var pawn = new Pawn();
     Object.keys(req.body).map((key, index) => {
@@ -22,7 +22,7 @@ class PawnService {
 
   getPawn(req, res,next){
     Pawn.find( {} , function(err , pawn){
-      if(err) return res.send ({ message : cannot find Pawn, err : err});
+      if(err) return res.send({ message : 'cannot find Pawn', err : err});
       return res.json(pawn);
     })
   }
@@ -49,5 +49,3 @@ class PawnService {
     }
   }
 }
-
-export default new PawnService();

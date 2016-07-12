@@ -1,7 +1,7 @@
 'use strict'
 import DayBook from './../models/daybook'
 
-class DayBookService {
+export default class DayBookService {
   addDayBook(req, res, next){
       var dayBook = new DayBook();
       Object.keys(req.body).map((key, index) => {
@@ -25,7 +25,7 @@ class DayBookService {
 
   getDayBook(req, res,next){
     DayBook.find( {} , function(err , daybook){
-      if(err) return res.send ({ message : cannot find DayBooks, err : err});
+      if(err) return res.send({ message : 'cannot find DayBooks'  , err : err});
       return res.json(daybook);
     })
   }
@@ -47,6 +47,5 @@ class DayBookService {
    } catch (e) {
      res.status(404).send({ message: ' Could not save the DayBook to database due to: ' + e });
    }
+   }
 }
-
-export default new DayBookService();

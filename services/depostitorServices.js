@@ -1,6 +1,6 @@
 import Depositor from './../models/depositor'
 
-class DepositorService {
+export default  class DepositorService {
   addDepositor(req, res, next){
       var depositor  = new Depositor();
       Object.keys(req.body).map((key, index) => {
@@ -24,7 +24,7 @@ class DepositorService {
 
   getDepostitor(req, res,next){
     Depositor.find( {} , function(err , deposit){
-      if(err) return res.send ({ message : cannot find Depositor, err : err});
+      if(err) return res.send({ message : 'cannot find Depositor', err : err});
       return res.json(deposit);
     })
   }
@@ -52,5 +52,3 @@ class DepositorService {
     }
   }
 }
-
-export default new DepositorService();

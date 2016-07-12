@@ -6,9 +6,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-import pawnService  from './services/pawnServices'
-import depositorService from './services/depostitorServices';
-import dayBookService from './services/dayBookServices';
+import PawnService  from './services/pawnServices'
+var pawnService = new PawnService();
+import DepositorService from './services/depostitorServices';
+var depositorService = new DepositorService();
+import DayBookService from './services/dayBookServices';
+var dayBookService = new DayBookService();
 var mongoose = require('mongoose')
 
 var app = express();
