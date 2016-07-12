@@ -6,13 +6,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+import pawnService  from './services/pawnServices'
+import depositorService from './services/depostitorServices';
+import dayBookService from './services/dayBookServices';
 var mongoose = require('mongoose')
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-
 
 var app = express();
 console.log(config.database)
@@ -34,33 +31,49 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+//Add
 app.post('/api/depositor', function(req,res,next){
-
+    depositorService.addDepositor(req,res,next);
 })
 
 app.post('/api/pawn', function(req,res,next){
-
+  pawnService.addPawn(req,res,next);
 })
 
 app.post('/api/daybook', function(req,res,next){
-
+  dayBookService.addDayBook(req,res,next);
 })
 
-app.get('/api/pawn', function(req,res,next){
+//Edit
+app.post('/api/edit/depositor', function(req,res,next){
+  dayBookService.editDepositor(req,res,next);
+})
 
+app.post('/api/edit/daybook', function(req,res,next){
+  dayBookService.editDayBook(req,res,next);
+})
+
+app.post('/api/edit/pawn', function(req,res,next){
+  dayBookService.editPawn(req,res,next);
+})
+
+//Get
+app.get('/api/pawn', function(req,res,next){
+  pawnService.getPawn(req,res,next);
 })
 
 app.get('/api/pawn/:id',function(req,res,next){
-
+  pawnService.getPawnById(req,res,next);
 })
 
 app.get('/api/depositor/:id',function(req,res,next){
-
+    depositorService.getDepostitorById(req,res,next);
 })
 
-app.get('/api/getalldetails', function(req,res,next){
 
+//Get ALl
+app.get('/api/getalldetails', function(req,res,next){
+     res.send("not yet implemented")
 })
 
 // catch 404 and forward to error handler

@@ -13,7 +13,7 @@ var pawnSchema =  new Schema({
   interestPerMonth : {  type : Number , required : true },
   done : { type : boolean },
   createdAt : {type : Date},
-   updatedAt : {type : Date ,default  : Date.Now}
+  updatedAt : {type : Date ,default  : Date.Now}
 })
 
 export default mongoose.model('Pawn', pawnSchema , 'pawn')

@@ -1,7 +1,7 @@
 'use strict'
 import DayBook from './../models/daybook'
 
-class DepositorService {
+class DayBookService {
   addDayBook(req, res, next){
       var dayBook = new DayBook();
       Object.keys(req.body).map((key, index) => {
@@ -49,4 +49,4 @@ class DepositorService {
    }
 }
 
-export default DepositorService;
+export default new DayBookService();
