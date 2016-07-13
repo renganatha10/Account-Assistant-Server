@@ -5,6 +5,7 @@ var Schema  = mongoose.Schema;
 var pawnSchema =  new Schema({
   name : { type : String , required : true },
   amount : { type : Number , required : true },
+  pawnId : { type : Number , default  : 0 },
   particulars : { type : String , lowercase : true , trim : true , required : true },
   noOfItems :  { type : Number , required : true },
   totalgrams : { type : String , required : true },

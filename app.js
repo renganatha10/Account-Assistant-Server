@@ -65,6 +65,10 @@ app.get('/api/pawn', function(req,res,next){
   pawnService.getPawn(req,res,next);
 })
 
+app.get('/inc', function(req,res,next){
+  res.send({id : config.pawnId++});
+})
+
 
 app.get('/api/pawn/:id',function(req,res,next){
   pawnService.getPawnById(req,res,next);
