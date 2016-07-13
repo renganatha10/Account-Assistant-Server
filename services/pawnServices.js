@@ -28,7 +28,7 @@ import Pawn from './../models/pawndetails'
   }
 
   getPawnById(req,res,next){
-    Pawn.findOne({_id : req.body.id}).exec((err,pawn) => {
+    Pawn.findOne({_id : req.params.id}).exec((err,pawn) => {
       if(err) return res.end("Error Occured" , err);
       else if(!pawn) return res.send("Depositor Not Found");
       res.json(pawn);

@@ -65,6 +65,7 @@ app.get('/api/pawn', function(req,res,next){
   pawnService.getPawn(req,res,next);
 })
 
+
 app.get('/api/pawn/:id',function(req,res,next){
   pawnService.getPawnById(req,res,next);
 })
@@ -76,7 +77,7 @@ app.get('/api/depositor/:id',function(req,res,next){
 
 //Get ALl
 app.get('/api/getalldetails', function(req,res,next){
-     res.send("not yet implemented")
+     dayBookService.getAllDetailsCombined(req,res,next);
 })
 
 // catch 404 and forward to error handler

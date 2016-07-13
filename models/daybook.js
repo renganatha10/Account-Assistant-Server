@@ -8,7 +8,7 @@ var dayBookSchema = new Schema({
    depositorId : { type : Schema.Types.ObjectId, ref : 'Depositor' },
    pawnId : { type : Schema.Types.ObjectId, ref : 'Pawn' },
    createdAt : {type : Date},
-   updatedAt : {type : Date ,default  : Date.Now}
+   updatedAt : {type : Date ,default  : Date.now}
 })
 
 export default mongoose.model('DayBook',dayBookSchema,'dayBook');

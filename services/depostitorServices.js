@@ -6,7 +6,7 @@ export default  class DepositorService {
       Object.keys(req.body).map((key, index) => {
         depositor[key] = req.body[key];
       })
-      this.saveDepositor(depositor , res)
+      this.saveDepositor(depositor , res, next)
   }
 
   editDepositor(req,res,next){
@@ -30,7 +30,7 @@ export default  class DepositorService {
   }
 
   getDepostitorById(req,res,next){
-    Depositor.findOne({_id : req.body.id}).exec((err,deposit) => {
+    Depositor.findOne({_id : req.params.id}).exec((err,deposit) => {
       if(err) return res.end("Error Occured" , err);
       else if(!deposit) return res.send("Depositor Not Found");
       res.json(deposit);
@@ -38,7 +38,7 @@ export default  class DepositorService {
     })
   }
 
-  saveDepositor(depositor , res){
+  saveDepositor(depositor , res, next){
     try {
       depositor.save(function(err) {
         if (err) return next(err);
