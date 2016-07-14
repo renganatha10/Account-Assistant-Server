@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 var Schema = mongoose.Schema;
+import autoIncrement from 'mongoose-auto-increment'
 
 var dayBookSchema = new Schema({
    type : {type  : String , lowercase : true , trim :true, required : true},

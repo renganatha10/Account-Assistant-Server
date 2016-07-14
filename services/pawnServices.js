@@ -1,4 +1,6 @@
-import Pawn from './../models/pawndetails'
+import Pawn from './../models/pawndetails';
+
+import DayBook from './../models/daybook';
 
  export default class PawnService {
   addPawn(req, res, next){
@@ -23,7 +25,7 @@ import Pawn from './../models/pawndetails'
   getPawn(req, res,next){
     Pawn.find( {} , function(err , pawn){
       if(err) return res.send({ message : 'cannot find Pawn', err : err});
-      return res.json(pawn);
+      return res.send(pawn)
     })
   }
 
@@ -31,7 +33,10 @@ import Pawn from './../models/pawndetails'
     Pawn.findOne({_id : req.params.id}).exec((err,pawn) => {
       if(err) return res.end("Error Occured" , err);
       else if(!pawn) return res.send("Depositor Not Found");
-      res.json(pawn);
+      DayBook.find({pawnId : pawn._id}).exec((err , dayBook) => {
+        if(err) return  res.send({message : "Conanot Load DayBook for pawn iD" , err : err})
+        return  res.send({  pawn ,dayBook });
+      })
     })
   }
 

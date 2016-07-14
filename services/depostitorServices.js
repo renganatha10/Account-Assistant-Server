@@ -1,4 +1,5 @@
 import Depositor from './../models/depositor'
+import DayBook from './../models/daybook';
 
 export default  class DepositorService {
   addDepositor(req, res, next){
@@ -33,8 +34,10 @@ export default  class DepositorService {
     Depositor.findOne({_id : req.params.id}).exec((err,deposit) => {
       if(err) return res.end("Error Occured" , err);
       else if(!deposit) return res.send("Depositor Not Found");
-      res.json(deposit);
-
+      DayBook.find({depositorId : deposit._id}).exec((err , dayBook) => {
+        if(err) return  res.send({message : "Conanot Load DayBook for Depost iD" , err : err})
+        return  res.send({  pawn ,dayBook });
+      })
     })
   }
 

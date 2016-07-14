@@ -12,7 +12,12 @@ import DepositorService from './services/depostitorServices';
 var depositorService = new DepositorService();
 import DayBookService from './services/dayBookServices';
 var dayBookService = new DayBookService();
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+import autoIncrement from 'mongoose-auto-increment'
+import SearchService from './services/searchService';
+var searchService = new SearchService();
+
+
 
 var app = express();
 console.log(config.database)
@@ -75,13 +80,17 @@ app.get('/api/pawn/:id',function(req,res,next){
 })
 
 app.get('/api/depositor/:id',function(req,res,next){
-    depositorService.getDepostitorById(req,res,next);
+  depositorService.getDepostitorById(req,res,next);
 })
 
 
 //Get ALl
 app.get('/api/getalldetails', function(req,res,next){
-     dayBookService.getAllDetailsCombined(req,res,next);
+  dayBookService.getAllDetailsCombined(req,res,next);
+})
+
+app.get('/api/search/pawn', function(req,res,next){
+  searchService.getPawnDetailsBasedOnQuery(req,res,next);
 })
 
 // catch 404 and forward to error handler
