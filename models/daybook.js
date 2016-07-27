@@ -5,7 +5,7 @@ import autoIncrement from 'mongoose-auto-increment'
 var dayBookSchema = new Schema({
    type : {type  : String , lowercase : true , trim :true, required : true},
    amount : { type : Number , required :true },
-   particulars : { type : String, },
+   name : { type : String, },
    depositorId : { type : Schema.Types.ObjectId, ref : 'Depositor' },
    pawnId : { type : Schema.Types.ObjectId, ref : 'Pawn' },
    createdAt : {type : Date},

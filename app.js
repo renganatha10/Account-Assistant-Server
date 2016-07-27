@@ -17,6 +17,8 @@ import autoIncrement from 'mongoose-auto-increment'
 import SearchService from './services/searchService';
 var searchService = new SearchService();
 
+var cors =require('cors')
+
 
 
 var app = express();
@@ -38,6 +40,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors({origin: 'http://localhost:3010'}))
 
 //Add
 app.post('/api/depositor', function(req,res,next){
@@ -68,10 +72,6 @@ app.post('/api/edit/pawn', function(req,res,next){
 //Get
 app.get('/api/pawn', function(req,res,next){
   pawnService.getPawn(req,res,next);
-})
-
-app.get('/inc', function(req,res,next){
-  res.send({id : config.pawnId++});
 })
 
 

@@ -30,7 +30,7 @@ import DayBook from './../models/daybook';
   }
 
   getPawnById(req,res,next){
-    Pawn.findOne({_id : req.params.id}).exec((err,pawn) => {
+    Pawn.findOne({pawnId : req.params.id}).exec((err,pawn) => {
       if(err) return res.end("Error Occured" , err);
       else if(!pawn) return res.send("Depositor Not Found");
       DayBook.find({pawnId : pawn._id}).exec((err , dayBook) => {

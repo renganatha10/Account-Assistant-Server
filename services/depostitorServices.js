@@ -31,12 +31,13 @@ export default  class DepositorService {
   }
 
   getDepostitorById(req,res,next){
-    Depositor.findOne({_id : req.params.id}).exec((err,deposit) => {
+    Depositor.findOne({depositorId : req.params.id}).exec((err,deposit) => {
+      console.log(deposit);
       if(err) return res.end("Error Occured" , err);
       else if(!deposit) return res.send("Depositor Not Found");
       DayBook.find({depositorId : deposit._id}).exec((err , dayBook) => {
         if(err) return  res.send({message : "Conanot Load DayBook for Depost iD" , err : err})
-        return  res.send({  pawn ,dayBook });
+        return  res.send({  deposit ,dayBook });
       })
     })
   }
