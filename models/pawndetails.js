@@ -16,7 +16,7 @@ var pawnSchema =  new Schema({
   place : { type : String , required : true },
   returnDate : { type : Date , required : true },
   interestPerMonth : {  type : String , required : true },
-  done : { type : Boolean },
+  done : { type : Boolean , default : false },
   createdAt : {type : Date},
   updatedAt : {type : Date ,default  : Date.now},
   type : { type : String , default : 'pawn' }

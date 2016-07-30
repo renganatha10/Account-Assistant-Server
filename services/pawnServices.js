@@ -1,5 +1,5 @@
 import Pawn from './../models/pawndetails';
-
+var ObjectId = require('mongoose').Types.ObjectId;
 import DayBook from './../models/daybook';
 
  export default class PawnService {
@@ -12,7 +12,7 @@ import DayBook from './../models/daybook';
   }
 
   editPawn(req,res,next){
-    Pawn.find({_id : req.body.id}).exec((err,pawn) => {
+    Pawn.findOne({_id : new ObjectId(req.body._id)}).exec((err,pawn) => {
       if(err) return res.end("Error Occured" , err);
       else if(!pawn) return res.send("Pawn Not Found");
       Object.keys(req.body).map((key, index) => {

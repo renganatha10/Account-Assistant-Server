@@ -66,7 +66,7 @@ app.post('/api/edit/daybook', function(req,res,next){
 })
 
 app.post('/api/edit/pawn', function(req,res,next){
-  dayBookService.editPawn(req,res,next);
+  pawnService.editPawn(req,res,next);
 })
 
 //Get
