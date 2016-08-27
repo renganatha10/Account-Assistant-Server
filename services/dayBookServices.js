@@ -2,6 +2,7 @@
 import DayBook from './../models/daybook';
 import Pawn from './../models/pawndetails';
 import Depositor from './../models/depositor';
+import sort from './../utils/sort'
 
 export default class DayBookService {
   addDayBook(req, res, next){
@@ -20,9 +21,7 @@ export default class DayBookService {
         dayBook[key]  = req.body[key]
       })
       this.saveDayBook(dayBook, res)
-
     })
-
   }
 
   getDayBook(req, res,next){
@@ -63,7 +62,7 @@ export default class DayBookService {
     })
 
     Promise.all([depositPromise, pawnPromise,dayBookPromise])
-            .then((response) => { let allData =  this.returnCurrentObject(response);  res.json(allData);  })
+            .then((response) => { let allData =  this.returnCurrentObject(response); res.json(sort.sortbyDate(allData));  })
             .catch((err) => { console.log(err);  res.status(404).send({ message: 'Property not found.' }); });
   }
 

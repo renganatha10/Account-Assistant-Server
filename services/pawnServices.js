@@ -23,10 +23,10 @@ import DayBook from './../models/daybook';
   }
 
   getPawn(req, res,next){
-    Pawn.find( {} , function(err , pawn){
+    Pawn.find({}).sort({updatedAt : -1}).exec((err, pawn) => {
       if(err) return res.send({ message : 'cannot find Pawn', err : err});
       return res.send(pawn)
-    })
+    });
   }
 
   getPawnById(req,res,next){

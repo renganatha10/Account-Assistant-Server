@@ -9,6 +9,7 @@ export default class SearchService {
         var endDateInt = parseInt(endDatespilitedArray[2]) + 1;
         return  `${year}-${month}-${endDateInt}`
     }
+    
     getPawnDetailsBasedOnQuery(req, res, next) {
         if (req.query.returnDate) {
             let endDate = this.getEndDate(req.query.returnDate);
